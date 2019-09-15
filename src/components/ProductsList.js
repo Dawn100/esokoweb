@@ -1,6 +1,6 @@
 import React, { Component } from 'react';   
 import Product from './Product';
-import Nav from './Nav';
+import MyNav from './Nav';
 
 
 class ProductsList extends Component {
@@ -20,20 +20,22 @@ class ProductsList extends Component {
         }
       }
       componentDidMount(){
-        fetch('http://127.0.0.1:8000/api/products?api_token=zDlrQ3x4QLVxrK0xUseqVhzMmJQ8iEzKikdUvd2WHYQ4LXSx14nQWXsde9O9').then(data=>data.json()).then(data=>{
-        this.setState({products:data})
+        fetch('http://127.0.0.1:8000/api/products?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
+          this.setState({products:data})
         })
       }
     render() { 
         return ( 
-          <div className="container">
-            <Nav/>
-              <h1>ProductsList</h1>
+          <div>
+            <MyNav/>
+            <div className="container">
+              <h3 className="text-secondary">All Products</h3>
               <div className="row">
               {this.state.products.map(product=>{
                 return (<Product key={product.id} product={product}/>)
               })}
               </div>
+            </div>
             </div>
          );
     }
