@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Product extends Component {
     constructor(props) {
@@ -7,12 +6,23 @@ class Product extends Component {
         this.state = {  }
     }
     render() { 
-        return ( <div class="card" style={{width: '18rem'}}>
-        <img src={this.props.product.photo} class="card-img-top" alt="..."/>
-        <div class="card-body">
-        <h5 class="card-title">{this.props.product.name}</h5>
-        <h6 class="card-subtitle mb-2 text-success">Kshs. {this.props.product.price}</h6>
-        <small class="card-text text-muted">{this.props.product.description}</small>
+
+
+        let detailUrl="/"+this.props.product.id+"/detail"
+        let editUrl="/"+this.props.product.id+"/edit"
+
+
+        return ( <div className="card" style={{width: '18rem'}}>
+        <img src={this.props.product.photo} className="card-img-top" alt="..."/>
+        <div className="card-body">
+        <h5 className="card-title">{this.props.product.name}</h5>
+        <h6 className="card-subtitle mb-2 text-success">Kshs. {this.props.product.price}</h6>
+        <small className="card-text text-muted">{this.props.product.description}</small>
+        <br/>
+        {this.props.mine
+        ?<a href={editUrl} className="btn btn-primary">Edit</a>
+        :<a href={detailUrl} className="btn btn-primary">Detais</a>
+        }
         </div>
       </div>
          );

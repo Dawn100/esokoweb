@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MyNav from './Nav';
-const axios = require('axios');
 
 
 
@@ -19,7 +18,11 @@ class Login extends Component {
                 'Content-Type':'application/json'
             },
             body:JSON.stringify(this.state)
-        }).then(response=>response.json()).then(response=>{
+        }).then(response=>{
+            console.log(response)
+            
+            return response.json()
+        }).then(response=>{
            localStorage.setItem('api_token',response.api_token);
            if(localStorage.getItem("api_token")){
             window.location.href='/'
@@ -30,6 +33,7 @@ class Login extends Component {
         return ( 
             <div>
                 <MyNav/>
+                <div className="container">
                 <div className="row justify-content-center align-self-center" style={{marginTop:100}}>
                     <div className="card col-sm-12 col-md-4" style={{padding:20}}>
                         <h3>Login</h3>
@@ -42,6 +46,7 @@ class Login extends Component {
                             <a href="/signup" className="btn btn-outline-primary">Signup</a>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
          );

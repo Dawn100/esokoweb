@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import  Update  from "./components/Update";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import  ProductsList  from "./components/ProductsList";
 import  DetailProduct  from "./components/DetailProduct";
 import Add from "./components/Add";
@@ -25,11 +24,10 @@ class App extends Component {
     <Router>
         <Route exact path="/" component={ProductsList} />
         <Route path="/add" component={Add} />
-        <Route path="/edit" component={Edit} />
+        <Route path="/:id/edit" component={Edit} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/detail" component={DetailProduct} />
-        <Route path="/update" component={Update} />
+        <Route path="/:id/detail" component={DetailProduct} />
     </Router>
      );
   }
