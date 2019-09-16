@@ -11,18 +11,24 @@ class Add extends Component {
             name:'',
             description:'',
             price:0,
-            stock:0
+            stock:0,
+            category:''
         }
         this.add=this.add.bind(this);
+        this.addCategory=this.addCategory.bind(this);
+        this.fetchCategories=this.fetchCategories.bind(this);
     }
 
-
-    componentDidMount(){
+    fetchCategories(id){
         fetch('http://127.0.0.1:8000/api/categories').then(response=>response.json()).then(response=>{
             this.setState({
                 categories:response
             })
         })
+    }
+
+    componentDidMount(){
+        this.fetchCategories();
     }
 
     add(){
@@ -55,10 +61,30 @@ class Add extends Component {
                 return response.json()
             } 
         }).then(response=>{
-                //window.location.href='/'
-                console.log(response)
+                window.location.href='/'
         })
 
+    }
+
+    addCategory(){
+        fetch('http://127.0.0.1:8000/api/categories',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                name:this.state.category
+            })
+        }).then(response=>response.ok?response.json():null).then(response=>{
+            let category_id=response.id
+            fetch('http://127.0.0.1:8000/api/categories').then(response=>response.json()).then(response=>{
+
+                this.setState({
+                    categories:response,
+                    category_id:category_id
+                })
+            })
+        })
     }
 
     render() { 
@@ -70,13 +96,34 @@ class Add extends Component {
                         <div className="card col-sm-12 col-md-5" style={{padding:20}}>
                         <h3>New Product</h3>
                             <hr/>
-                            <div className="form-group">
-                                <select name="category_id" onChange={(e)=>this.setState({category_id:e.target.value})} className="form-control" id="categoriesSelect">
+                            <div className="row justify-content-around form-group">
+                                <select name="category_id" value={this.state.category_id} onChange={(e)=>this.setState({category_id:e.target.value})} className="col form-control" id="categoriesSelect">
                                     <option>Category...</option>
                                     {this.state.categories.map(cat=>{
                                         return <option key={cat.id} value={cat.id}>{cat.name}</option>
                                     })}
                                 </select>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">+</button>
+
+                                <div class="modal fade bd-example-modal-sm" style={{backgroundColor:'#cccccc80'}} tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">New Category</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input name="cat" onChange={e=>this.setState({category:e.target
+                                            .value})} type="text" className="form-control" placeholder="Category Name"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onClick={this.addCategory}>Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
                             
                             <input className="form-control" type="text" onChange={(e)=>this.setState({name:e.target.value})} name="name" placeholder="Enter the name of the product"/>
