@@ -46,7 +46,7 @@ class Add extends Component {
 
         var data = new FormData()
 
-        for (const key in myjson) {
+        for (var key in myjson) {
             if (myjson.hasOwnProperty(key)) {
                 const element = myjson[key];
                 data.append(key, element)
@@ -93,8 +93,8 @@ class Add extends Component {
                 <MyNav/>
                 <div className="container">
                     <div className="row justify-content-center align-self-center" style={{marginTop:50}}>
-                        <div className="card col-sm-12 col-md-5" style={{padding:20}}>
-                        <h3>New Product</h3>
+                        <div className="card shadow col-sm-12 col-md-5" style={{padding:50}}>
+                        <h5 className="text-secondary">New Product</h5>
                             <hr/>
                             <div className="row justify-content-around form-group">
                                 <select name="category_id" value={this.state.category_id} onChange={(e)=>this.setState({category_id:e.target.value})} className="col form-control" id="categoriesSelect">

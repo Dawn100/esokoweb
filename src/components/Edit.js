@@ -115,23 +115,23 @@ class Edit extends Component {
                                         return <option key={cat.id} value={cat.id}>{cat.name}</option>
                                     })}
                                 </select>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">+</button>
+                                <button type="button" className="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">+</button>
 
-                                <div class="modal fade bd-example-modal-sm" style={{backgroundColor:'#cccccc80'}} tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">New Category</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <div className="modal fade bd-example-modal-sm" style={{backgroundColor:'#cccccc80'}} tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div className="modal-dialog modal-sm">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title">New Category</h5>
+                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div className="modal-body">
                                             <input name="cat" onChange={e=>this.setState({category:e.target
                                             .value})} type="text" className="form-control" placeholder="Category Name"/>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onClick={this.addCategory}>Add</button>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.addCategory}>Add</button>
                                         </div>
                                     </div>
                                 </div>

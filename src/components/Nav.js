@@ -12,14 +12,14 @@ class MyNav extends Component {
     }
     render() { 
         return ( 
-        <nav className="navbar navbar-expand-md shadow-sm navbar-light bg-light">
+        <nav className="navbar navbar-expand-md shadow-sm navbar-light sticky-top" style={{backgroundColor:'#f9f9f9e0'}}>
           <div className="container justify-content-center">
             <a className="navbar-brand col" href="/">Esoko</a>
       
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               
               <div className="form-inline my-auto">
-                <div class="input-group ">
+                <div className="input-group ">
 
                   <input 
                     className="form-control" 
@@ -31,8 +31,10 @@ class MyNav extends Component {
                     placeholder="Find a product..." 
                     aria-label="Search"/>
 
-                  <div class="input-group-append">
-                    <button className="btn btn-outline-primary" type="button" id="button-addon2" onClick={this.search} >Search</button>
+                  <div className="input-group-append">
+                    <button className="btn btn-secondary" type="button" id="button-addon2" onClick={this.search} >
+                      <i className="fas fa-search"></i>
+                    </button>
                   </div>
 
                 </div>

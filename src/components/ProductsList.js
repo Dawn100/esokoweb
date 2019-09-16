@@ -47,12 +47,12 @@ class ProductsList extends Component {
 
               <ul className="justify-content-center nav nav-tabs" style={{marginTop:15,marginBottom:15}} id="myTab" role="tablist">
                 <li className="nav-item">
-                  <a className="nav-link active" style={{border:'none'}}  id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                  <a className="nav-link active" style={{border:'none',backgroundColor:'transparent'}}  id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
                   All Products
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" style={{border:'none'}} id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                  <a className="nav-link" style={{border:'none',backgroundColor:'transparent'}} id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
                   My Products
                   </a>
                 </li>
@@ -69,7 +69,7 @@ class ProductsList extends Component {
               </div>
               <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 
-                  <a href='/add' className="shadow btn btn-info float-right">Add Product</a>
+                  <a href='/add' className="shadow-lg btn btn-secondary float-right"><i className="fas fa-plus"> Add Product</i></a>
                 <br/>
                 <br/>
               <div className="row justify-content-center">

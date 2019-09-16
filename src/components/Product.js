@@ -35,11 +35,11 @@ class Product extends Component {
         <small className="card-text text-muted" style={{height:200}}>{this.props.product.description}</small>
         <br/>
         {this.props.mine
-        ?(<div className="row justify-content-around">
-            <a href={editUrl} className="btn btn-primary">Edit</a>
-            <button href={editUrl} className="btn btn-outline-danger" onClick={this.delete}>Delete</button>
+        ?(<div className="row justify-content-around align-bottom">
+            <a href={editUrl} className="btn text-info"><i className="fas fa-pen"></i></a>
+            <button href={editUrl} className="btn text-danger" onClick={this.delete}><i className="fas fa-trash"></i></button>
         </div>)
-        :<a href={detailUrl} className="btn btn-primary">Detais</a>
+        :<a href={detailUrl} className="btn text-primary">Details</a>
         }
         </div>
       </div>
