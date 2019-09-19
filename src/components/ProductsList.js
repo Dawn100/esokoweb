@@ -1,7 +1,7 @@
 import React, { Component } from 'react';   
 import Product from './Product';
 import MyNav from './Nav';
-
+import config from "../config";
 
 class ProductsList extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class ProductsList extends Component {
       }
 
       search(searchterm){
-        fetch("http://127.0.0.1:8000/api/search",{
+        fetch(config.server+"/search",{
         method:'POST',
         headers:{
           'Content-Type':'application/json'
@@ -30,11 +30,11 @@ class ProductsList extends Component {
           if(!localStorage.getItem("api_token")){
             window.location.href='/login'
           }
-        fetch('http://127.0.0.1:8000/api/products?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
+        fetch(config.server+'/products?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
           this.setState({products:data})
         })
 
-        fetch('http://127.0.0.1:8000/api/user/products?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
+        fetch(config.server+'/user/products?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
           this.setState({myproducts:data})
         })
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import config from "../config";
 
 class Product extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class Product extends Component {
     }
 
     delete(){
-        fetch("http://127.0.0.1:8000/api/products/"+this.props.product.id+"?api_token="+localStorage.getItem('api_token'),{
+        fetch(config.server+"/products/"+this.props.product.id+"?api_token="+localStorage.getItem('api_token'),{
             method:'DELETE'
         }).then(response=>{
             if(response.ok){

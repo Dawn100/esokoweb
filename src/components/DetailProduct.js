@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MyNav from './Nav';
-
+import config from "../config";
 
 class DetailProduct extends Component {
     constructor(props) {
@@ -9,7 +9,7 @@ class DetailProduct extends Component {
     }
 
     componentDidMount(){
-     fetch('http://127.0.0.1:8000/api/products/'+this.props.match.params.id+'?api_token=zDlrQ3x4QLVxrK0xUseqVhzMmJQ8iEzKikdUvd2WHYQ4LXSx14nQWXsde9O9').then(data=>data.json()).then(data=>{
+     fetch(config.server+'/products/'+this.props.match.params.id+'?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
         this.setState({product:data,user:data.user,category:data.category})
         })
       }

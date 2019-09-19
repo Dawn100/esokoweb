@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MyNav from './Nav';
-
+import config from "../config";
 
 class Signup extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Signup extends Component {
 
 
     signup(){
-        fetch('http://127.0.0.1:8000/api/register/',{
+        fetch(config.server+'/register/',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

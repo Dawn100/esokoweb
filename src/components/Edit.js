@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MyNav from './Nav';
+import config from "../config";
+
 
 
 class Edit extends Component {
@@ -20,12 +22,12 @@ class Edit extends Component {
 
 
     componentDidMount(){
-        fetch('http://127.0.0.1:8000/api/categories').then(response=>response.json()).then(response=>{
+        fetch(config.server+'/categories').then(response=>response.json()).then(response=>{
             this.setState({
                 categories:response
             })
         })
-        fetch('http://127.0.0.1:8000/api/products/'+this.props.match.params.id+'?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
+        fetch(config.server+'/products/'+this.props.match.params.id+'?api_token='+localStorage.getItem('api_token')).then(data=>data.json()).then(data=>{
             this.setState({
                 category_id:data.category_id,
                 name:data.name,
@@ -37,7 +39,7 @@ class Edit extends Component {
     }
 
     addCategory(){
-        fetch('http://127.0.0.1:8000/api/categories',{
+        fetch(config.server+'/categories',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -47,7 +49,7 @@ class Edit extends Component {
             })
         }).then(response=>response.ok?response.json():null).then(response=>{
             let category_id=response.id
-            fetch('http://127.0.0.1:8000/api/categories').then(response=>response.json()).then(response=>{
+            fetch(config.server+'/categories').then(response=>response.json()).then(response=>{
 
                 this.setState({
                     categories:response,
@@ -73,7 +75,7 @@ class Edit extends Component {
 
         formdata.append('photo',photoInput.files[0])
         
-        fetch('http://127.0.0.1:8000/api/products/'+this.props.match.params.id+'?api_token='+localStorage.getItem('api_token'),{
+        fetch(config.server+'/products/'+this.props.match.params.id+'?api_token='+localStorage.getItem('api_token'),{
             method:'PUT',
             headers:{
                 'Content-Type':'application/json'
@@ -84,7 +86,7 @@ class Edit extends Component {
                 return response.json()
             } 
         }).then(response=>{
-                fetch('http://127.0.0.1:8000/api/products/'+this.props.match.params.id+'/setphoto?api_token='+localStorage.getItem('api_token'),{
+                fetch(config.server+'/products/'+this.props.match.params.id+'/setphoto?api_token='+localStorage.getItem('api_token'),{
                     method:'POST',
                     body:formdata
                 }).then(response=>{
